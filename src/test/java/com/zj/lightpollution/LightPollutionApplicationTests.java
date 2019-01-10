@@ -1,4 +1,4 @@
-package com.zj.light_pollution;
+package com.zj.lightpollution;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

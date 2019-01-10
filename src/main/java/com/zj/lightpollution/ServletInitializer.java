@@ -1,4 +1,4 @@
-package com.zj.light_pollution;
+package com.zj.lightpollution;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
