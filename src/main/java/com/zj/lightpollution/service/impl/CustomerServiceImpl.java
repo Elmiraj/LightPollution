@@ -5,8 +5,10 @@ import com.zj.lightpollution.converter.CustomerVoToEntity;
 import com.zj.lightpollution.model.CustomerEntity;
 import com.zj.lightpollution.repository.CustomerRepository;
 import com.zj.lightpollution.service.CustomerService;
+import com.zj.lightpollution.vo.customer.CustomerProductVo;
 import com.zj.lightpollution.vo.customer.CustomerVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
      * @return List<CustomerVo>
      */
     @Override
-    public List<CustomerVo> findCustomerVoList() {
+    public List<CustomerVo> findCustomerVoList(Pageable pageable) {
         List<CustomerVo> customerVoList = new ArrayList<>();
         try {
             List<CustomerEntity> customerList = customerRepository.findAllByOrderByCustomerName();
@@ -75,13 +77,40 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    /**
+     * 根据客户名称查询客户
+     *
+     * @param customerName String
+     * @return CustomerVo
+     */
+    @Override
+    public CustomerVo findCustomerVoByCustomerName(String customerName) {
+        CustomerEntity customerEntity = customerRepository.findCustomerEntityByCustomerName(customerName);
+        if (customerEntity != null){
+            return new CustomerEntityToVo().apply(customerEntity);
+        }else {
+            return null;
+        }
+    }
+
     @Override
     public void save(CustomerVo customerVo){
         try {
             CustomerEntity customerEntity = new CustomerVoToEntity().apply(customerVo);
-            customerRepository.saveAndFlush(customerEntity);
+            if (customerEntity != null) {
+                customerRepository.saveAndFlush(customerEntity);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 保存客户
+     * @param customerProductVo CustomerProductVo
+     */
+    @Override
+    public void saveCustomer(CustomerProductVo customerProductVo) {
+
     }
 }

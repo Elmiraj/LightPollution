@@ -1,9 +1,12 @@
 package com.zj.lightpollution.vo.customer;
 
+import com.zj.lightpollution.vo.product.ProductVo;
+import com.zj.lightpollution.vo.quantity.QuantityVo;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 客户VO
@@ -54,4 +57,14 @@ public class CustomerVo {
      * 订货种类
      */
     private Integer productCount;
+
+    /**
+     * 货物和数量的集合
+     */
+    private List<QuantityVo> quantityVoList;
+
+    /**
+     * 货物集合
+     */
+    private List<ProductVo> productVoList;
 }

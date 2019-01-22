@@ -1,5 +1,7 @@
 package com.zj.lightpollution.vo.customer;
 
+import java.util.List;
+
 /**
  * CustomerListVo class
  * @author junzhang
@@ -13,4 +15,10 @@ public class CustomerListVo {
         super();
     }
 
+    public List<CustomerVo> customerVoList;
+
+    public CustomerListVo(List<CustomerVo> customerVoList){
+        this();
+        this.customerVoList = customerVoList;
+    }
 }

@@ -22,6 +22,13 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>,
     CustomerEntity findCustomerEntityById(Long id);
 
     /**
+     * 根据客户名称查询客户
+     * @param customerName String
+     * @return CustomerEntity
+     */
+    CustomerEntity findCustomerEntityByCustomerName(String customerName);
+
+    /**
      * 根据姓名排序
      * @return List<CustomerEntity>
      */

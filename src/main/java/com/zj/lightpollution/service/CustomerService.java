@@ -1,7 +1,9 @@
 package com.zj.lightpollution.service;
 
 import com.zj.lightpollution.model.CustomerEntity;
+import com.zj.lightpollution.vo.customer.CustomerProductVo;
 import com.zj.lightpollution.vo.customer.CustomerVo;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -25,6 +27,11 @@ public interface CustomerService {
     void save(CustomerVo customerVo);
 
     /**
+     * 保存客户
+     * @param customerProductVo CustomerProductVo
+     */
+    void saveCustomer(CustomerProductVo customerProductVo);
+    /**
      * 删除
      * @param id Long
      */
@@ -32,9 +39,10 @@ public interface CustomerService {
 
     /**
      * 查询客户VO列表
+     * @param pageable Pageable
      * @return List<CustomerVo>
      */
-    List<CustomerVo> findCustomerVoList();
+    List<CustomerVo> findCustomerVoList(Pageable pageable);
 
     /**
      * 更具id查询客户
@@ -42,4 +50,11 @@ public interface CustomerService {
      * @return CustomerVo
      */
     CustomerVo findCustomerVoById(Long id);
+
+    /**
+     * 根据客户名称查询客户
+     * @param customerName String
+     * @return CustomerVo
+     */
+    CustomerVo findCustomerVoByCustomerName(String customerName);
 }

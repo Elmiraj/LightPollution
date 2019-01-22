@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+      <!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+      <!--layout:decorate="~{layouts/layout}">-->
+<head>
+    <meta charset="utf-8" />
+    <!--<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />-->
+    <!--<link rel="icon" type="image/png" href="../assets/img/favicon.png" />-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Material Dashboard by Creative Tim</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--  Material Dashboard CSS    -->
+    <link href="/static/css/material-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/static/css/demo.css" rel="stylesheet" />
+
+    <!--     Fonts and icons     -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/static/css/2d7207a20f294df196f3a53cae8a0def.css' rel='stylesheet' type='text/css'>
+    <style>
+        td.center, th.center {
+            text-align: center
+        }
+        .action-buttons a {
+            margin: 0 3px;
+            display: inline-block;
+            opacity: .85;
+            -webkit-transition: all .1s;
+            -o-transition: all .1s;
+            transition: all .1s
+        }
+
+        .action-buttons a:hover {
+            text-decoration: none;
+            opacity: 1;
+            -moz-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2)
+        }
+        .purple {
+            color: #A069C3 !important
+        }
+        tr.detail-row {
+            display: none
+        }
+
+        tr.detail-row.open {
+            /*display: block;*/
+            display: table-row
+        }
+
+        tr.detail-row > td {
+            /*background-color: #f1f6f8;*/
+            background-color: transparent;
+            border-top: 3px solid #d1e1ea !important
+        }
+        .table-detail {
+            background-color: #fff;
+            border: 1px solid #dcebf7;
+            width: 100%;
+            padding: 12px
+        }
+
+        .table-detail td > .profile-user-info {
+            width: 100%
+        }
+
+        .profile-user-info {
+            display: table;
+            /*width: 98%;*/
+            width: calc(100% - 24px);
+            margin: 0 auto
+        }
+
+        .profile-info-row {
+            display: table-row
+        }
+
+        .profile-info-name, .profile-info-value {
+            display: table-cell
+            /*border-top: 1px dotted #D5E4F1*/
+        }
+
+        .profile-info-name {
+            text-align: right;
+            padding: 6px 10px 6px 4px;
+            font-weight: 400;
+            color: #667E99;
+            background-color: transparent;
+            width: 110px;
+            vertical-align: middle
+        }
+
+        .profile-info-value {
+            padding: 6px 4px 6px 6px
+        }
+
+        .profile-info-value > span + span:before {
+            display: inline;
+            content: ",";
+            margin-left: 1px;
+            margin-right: 3px;
+            color: #666;
+            border-bottom: 1px solid #FFF
+        }
+
+        .profile-info-value > span + span.editable-container:before {
+            display: none
+        }
+
+        .profile-info-row:first-child .profile-info-name, .profile-info-row:first-child .profile-info-value {
+            border-top: none
+        }
+
+        .profile-user-info-striped {
+            border: 1px solid #DCEBF7
+        }
+
+        .profile-user-info-striped .profile-info-name {
+            color: white;
+            background-color: purple;
+            /*border-top: 1px solid #F7FBFF*/
+        }
+
+        .profile-user-info-striped .profile-info-value {
+            border-top: 1px dotted #DCEBF7;
+            padding-left: 12px
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!--左边栏-->
+    <div class="sidebar" data-color="purple">
+        <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        Tip 2: you can also add an image using data-image tag
+
+        -->
+
+        <div class="logo">
+            <a href="#" class="simple-text">
+                Creative Tim
+            </a>
+        </div>
+
+
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li>
+                    <a href="customer.html">
+                        <i class="material-icons">customer</i>
+                        <p>Customer</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html">
+                        <i class="material-icons">person</i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="table.html">
+                        <i class="material-icons">content_paste</i>
+                        <p>Table List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="typography.html">
+                        <i class="material-icons">library_books</i>
+                        <p>Typography</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="icons.html">
+                        <i class="material-icons">bubble_chart</i>
+                        <p>Icons</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="maps.html">
+                        <i class="material-icons">location_on</i>
+                        <p>Maps</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="material-icons text-gray">notifications</i>
+                        <p>Notifications</p>
+                    </a>
+                </li>
+                <li class="active-pro">
+                    <a href="upgrade.html">
+                        <i class="material-icons">unarchive</i>
+                        <p>Upgrade to PRO</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Table List</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">dashboard</i>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">notifications</i>
+                                <span class="notification">5</span>
+                                <p class="hidden-lg hidden-md">Notifications</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mike John responded to your email</a></li>
+                                <li><a href="#">You have 5 new tasks</a></li>
+                                <li><a href="#">You're now friend with Andrew</a></li>
+                                <li><a href="#">Another Notification</a></li>
+                                <li><a href="#">Another One</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">person</i>
+                                <p class="hidden-lg hidden-md">Profile</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group  is-empty">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i><div class="ripple-container"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Simple Table</h4>
+                                <p class="category">Here is a subtitle for this table</p>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <span class="btn-group pull-left">
+                                    <a href="/newCustomer"
+                                       class="btn btn-sm btn-primary">添加</a>
+                                </span>
+                                <table class="table" style="width: fit-content">
+                                    <thead class="text-primary">
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>姓名</th>
+                                        <th>详情</th>
+                                        <th>订货</th>
+                                        <th>是否付款</th>
+                                        <th>总价</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="customerVo : ${customerVoList}">
+                                    <tr >
+                                        <td th:text="${customerVoStat.index+1}">Dakota Rice</td>
+                                        <!--<td th:text="${customerVo.getId()}">ID</td>-->
+                                        <td th:text="${customerVo.getCustomerName()}">Niger</td>
+
+                                        <td class="center">
+                                            <div class="action-buttons">
+                                                <a href="#" class="purple show-details-btn"
+                                                   title="Show Details">
+                                                    <i class="fa fa-angle-double-down"></i>
+                                                    <span class="sr-only">Details</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!--<a th:onclick="'javascript: onOperateClick(\''+${customerVo.getId()}+'\''+','+'/newCustomer'');'"-->
+                                            <!--&gt;订货</a>-->
+                                            <a th:onclick="'javascript:onOperateClick(\''+${customerVo.getId()}+'\',\''+'/goChooseProduct'+'\')'">
+                                                订货
+                                            </a>
+                                        </td>
+                                        <td th:text="${customerVo.getIsPaid()}==0?'完全付款' : (${customerVo.getIsPaid()}==1?'没有付款':'部分付款')"></td>
+                                        <td th:text="${customerVo.getTotalTotalPrice()}" class="text-primary">$36,738</td>
+                                    </tr>
+
+                                    <tr class="detail-row" >
+                                        <td colspan="13" >
+                                            <div class="table-detail" >
+                                                <div class="row" >
+
+                                                    <div class="col-xs-12 col-sm-10" >
+                                                        <!--<div class="space visible-xs"></div>-->
+
+                                                        <div class="profile-user-info profile-user-info-striped"  >
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> 姓名</div>
+
+                                                                <div class="profile-info-value">
+                                                                            <span th:text="${customerVo.getCustomerName()}">
+                                                                                客户姓名
+                                                                            </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div th:each="quantityVo : ${customerVo.getQuantityVoList()}">
+                                                                <div class="profile-info-row">
+                                                                    <div class="profile-info-name" style="background-color: #bce2e8;" th:text="${quantityVo.getProductName()}">
+                                                                        产品名称
+                                                                    </div>
+
+                                                                    <div class="profile-info-value">
+                                                                            <span th:text="${quantityVo.getQuantity()}">
+                                                                                产品数量
+                                                                            </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="profile-info-row">
+                                                                    <div class="profile-info-name"> 单价</div>
+
+                                                                    <div class="profile-info-value">
+                                                                            <span th:text="${quantityVo.getPrice()}">
+                                                                            </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="profile-info-row">
+                                                                    <div class="profile-info-name"> 总价</div>
+
+                                                                    <div class="profile-info-value">
+                                                                            <span th:text="${quantityVo.getTotalPrice()}">
+                                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> 货物总价</div>
+
+                                                                <div class="profile-info-value">
+                                                                            <span th:text="${customerVo.getTotalTotalPrice()}">
+                                                                            </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> 实际支付</div>
+
+                                                                <div class="profile-info-value">
+                                                                            <span th:text="${customerVo.getPaidMoney()}">
+                                                                            </span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Company
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Creative Tim</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+</div>
+
+</body>
+
+<!--   Core JS Files   -->
+<script src="/static/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/static/js/material.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="/static/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/static/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<!--<script type="text/javascript" src="/static/js/544d4e7330424f82ab7c7e44f8c98dc1.js"></script>-->
+
+<!-- Material Dashboard javascript methods -->
+<script src="/static/js/material-dashboard.js"></script>
+
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="/static/js/demo.js"></script>
+      <script src="/static/js/ace1.min.js" type="text/javascript"></script>
+      <script src="/static/js/jquery.knob.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('.show-details-btn').on('click', function (e) {
+            e.preventDefault();
+            $(this).closest('tr').next().toggleClass('open');
+            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+        });
+    })
+</script>
+<script>
+    function doGet(url, args) {
+        var form = $("<form method='get'></form>"),
+            input;
+        form.attr({"action": url});
+        $.each(args, function (key, value) {
+            input = $("<input type='hidden'>");
+            input.attr({"name": key});
+            input.val(value);
+            form.append(input);
+        });
+        $(document.body).append(form);
+        form.submit();
+    }
+
+    function onOperateClick(customerId, url) {
+        doGet(
+            url,
+            {
+                "id": customerId
+            }
+        );
+    }
+
+    var deleteId;
+
+    function onDeleteClick(customerId) {
+        deleteId = customerId;
+    }
+
+    function onSureDeleteClick() {
+        doPost(
+            '${pageContext.request.contextPath}/student/delete.do',
+            {
+                "id": deleteId
+            }
+        );
+    }
+</script>
+</html>
